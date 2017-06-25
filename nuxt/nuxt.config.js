@@ -1,10 +1,6 @@
 require('dotenv').config({path: '../.env'})
 
-console.log('env', process.env)
-
 module.exports = {
-  env: process.env,
-
   /*
   ** Headers of the page
   */

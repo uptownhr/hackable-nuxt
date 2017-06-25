@@ -1,0 +1,22 @@
+api:
+  image: node:8.1.2-alpine
+  volumes:
+    - ./:/hackable
+  working_dir: /hackable/api
+  command: sh docker-init.sh
+  ports:
+    - 3001:3001
+
+nuxt:
+  image: node:8.1.2-alpine
+  volumes:
+    - ./:/hackable
+  working_dir: /hackable/nuxt
+  command: sh docker-init.sh
+  ports:
+    - 3000:3000
+  environment:
+    - HOST=0.0.0.0
+    - PORT=3000
+  links:
+    - api:api
