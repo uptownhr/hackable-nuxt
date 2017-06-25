@@ -13,8 +13,8 @@
         <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
       </div>
     </div>
-    test: {{test}}
   </section>
+
 </template>
 
 <script>
@@ -28,6 +28,12 @@ export default {
   async asyncData ({app}) {
     return {
       test: await app.$axios.get('/').then(res => res.data)
+    }
+  },
+
+  methods: {
+    handle_login () {
+      this.$store.dispatch('login', 'testing123')
     }
   }
 }

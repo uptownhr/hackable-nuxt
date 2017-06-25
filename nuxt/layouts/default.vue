@@ -1,8 +1,31 @@
 <template>
   <div>
+    <div>
+      <nuxt-link to="/">Home</nuxt-link>
+      <nuxt-link v-if="current_user" to="/pro">Pro</nuxt-link>
+
+      <button
+        v-if="!current_user"
+        @click="$store.dispatch('login', {token:'asdfasdf', axios: $axios})"
+      >Login</button>
+      <button
+        v-else="current_user"
+        @click="$store.dispatch('logout')"
+      >Logout</button>
+    </div>
     <nuxt/>
   </div>
 </template>
+
+<script>
+  export default {
+    computed: {
+      current_user () {
+        return this.$store.state.current_user
+      }
+    }
+  }
+</script>
 
 <style>
 html
