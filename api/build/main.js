@@ -101,6 +101,14 @@ app.get('/', function (req, res) {
   res.send('working 2');
 });
 
+app.post('/login', function (req, res) {
+  var user = {
+    email: 'testing 123'
+  };
+
+  res.send({ user: user, token: 'asdfasdf' });
+});
+
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {

@@ -37,13 +37,7 @@ module.exports = {
       }
     }
   },
-
   modules: [
-    ['@nuxtjs/axios', {credentials: false}],
-    ['@nuxtjs/auth']
-  ],
-
-  router: {
-    middleware: ['auth']
-  }
+    ['@nuxtjs/axios', {credentials: false}]
+  ]
 }

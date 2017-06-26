@@ -24,8 +24,6 @@ export const actions = {
 
     let token = cookies.token
 
-    console.log('token', token, app)
-
     if (token) {
       commit('setToken', token)
       app.$axios.setToken(token)
@@ -40,12 +38,19 @@ export const actions = {
     })
   },
 
-  login ({commit, dispatch}, {axios, token}) {
-    Cookies.set('token', token)
+  login ({commit, dispatch}, {axios, credentials}) {
+    return axios
+      .post('/login', credentials)
+      .then(res => {
+        let {token, user} = res.data
 
-    commit('setToken', token)
+        Cookies.set('token', token)
 
-    dispatch('getCurrentUser', {axios})
+        commit('setToken', token)
+        commit('setCurrentUser', user)
+
+        return res.data
+      })
   },
 
   logout ({commit}, token) {

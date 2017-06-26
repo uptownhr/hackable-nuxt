@@ -2,16 +2,14 @@
   <div>
     <div>
       <nuxt-link to="/">Home</nuxt-link>
-      <nuxt-link v-if="current_user" to="/pro">Pro</nuxt-link>
 
-      <button
-        v-if="!current_user"
-        @click="$store.dispatch('login', {token:'asdfasdf', axios: $axios})"
-      >Login</button>
-      <button
-        v-else="current_user"
-        @click="$store.dispatch('logout')"
-      >Logout</button>
+      <template v-if="current_user">
+        <nuxt-link to="/dashboard">Dashboard</nuxt-link>
+        <button
+          @click="$store.dispatch('logout')"
+        >Logout</button>
+      </template>
+      <nuxt-link v-else to="/login">Login</nuxt-link>
     </div>
     <nuxt/>
   </div>

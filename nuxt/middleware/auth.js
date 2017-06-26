@@ -1,6 +1,5 @@
-export default function ({store, app}) {
+export default function ({store, redirect}) {
   console.log('auth middleware', store.state)
-  const SSR = global.__VUE_SSR_CONTEXT__
 
-  console.log(SSR)
+  if (!store.state.current_user) return redirect('/login')
 }
